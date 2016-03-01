@@ -12,6 +12,7 @@ function mainInit() {
 
 function bar(x1, y1, w, h) {
     var graphics = new PIXI.Graphics();
+    graphics.cacheAsBitmap = true;
     var nh = h/(arguments.length-4);
     for(var i=4; i<arguments.length; i++) {
 	graphics.beginFill(arguments[i]);
@@ -23,6 +24,7 @@ function bar(x1, y1, w, h) {
 
 function triangle(x1, y1, w, h, c) {
     var graphics = new PIXI.Graphics();
+    graphics.cacheAsBitmap = true;
     graphics.beginFill(c);
     graphics.drawPolygon(x1, y1, x1+(w/2), y1+h, x1+w, y1);
     graphics.endFill();
