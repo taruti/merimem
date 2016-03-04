@@ -6,7 +6,7 @@ function mainInit() {
     stage = new PIXI.Container();
     stage.addChild(bar(50,50, 10, 100, 0x000000, 0xFFFF00));
     stage.addChild(bar(80,50, 10, 100, 0x000000, 0xFFFF00, 0x000000));
-    stage.addChild(triangle(120, 50, 20, 20, 0));
+    stage.addChild(triangleMarkerSprite(20, 100, 0, true, false));
     renderer.render(stage);
 }
 
@@ -22,11 +22,23 @@ function bar(x1, y1, w, h) {
     return graphics;
 }
 
-function triangle(x1, y1, w, h, c) {
+function triangleMarkerSprite(w, h, c, up1, up2) {
     var graphics = new PIXI.Graphics();
-    graphics.cacheAsBitmap = true;
     graphics.beginFill(c);
-    graphics.drawPolygon(x1, y1, x1+(w/2), y1+h, x1+w, y1);
+    graphics.lineStyle(2, c, 255);
+    graphics.moveTo(w/2, 2);
+    graphics.lineTo(w/2, h);
+    graphics.lineStyle(0, c, 255);
+    var y = w;
+    if(up1)
+	graphics.drawPolygon(0, y, w/2, 0, w, y);
+    else
+	graphics.drawPolygon(0, 0, w/2, y, w, 0);
+    if(up2)
+	graphics.drawPolygon(0, 2+y+y, w/2, 2+y, w, 2+y+y);
+    else
+	graphics.drawPolygon(0, 2+y, w/2, 2+y+y, w, 2+y);
     graphics.endFill();
-    return graphics;
+    var s = new PIXI.Sprite(graphics.generateTexture(1, PIXI.SCALE_MODES.LINEAR));
+    return s;
 }
