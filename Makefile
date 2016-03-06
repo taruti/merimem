@@ -1,5 +1,5 @@
 
-all: dst/index.html dst/pixi.js dst/main.js
+all: dst/index.html dst/pixi.js dst/main.js dst/style.css
 
 dst:
 	mkdir -p dst
@@ -12,3 +12,6 @@ dst/main.js: js/main.js
 
 dst/pixi.js: ext/pixi.min.js
 	cp ext/pixi.min.js dst/pixi.js
+
+dst/style.css: css/style.scss
+	sass css/style.scss dst/style.css
