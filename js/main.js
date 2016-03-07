@@ -1,7 +1,7 @@
 var stage;
 var renderer;
 function mainInit() {
-    renderer = PIXI.autoDetectRenderer(800,600, {backgroundColor: 0x44FFFF});
+    renderer = PIXI.autoDetectRenderer(800,600, {backgroundColor: 0xFFFFFF});
     document.body.appendChild(renderer.view);
     stage = new PIXI.Container();
     stage.addChild(bar(50,50, 10, 100, 0x000000, 0xFFFF00));
